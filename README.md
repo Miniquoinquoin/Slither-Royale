@@ -1,5 +1,5 @@
 # Slither-Royale
-
+# Groupe : Allan AMRI - Alexandre Vial - Jonathan Heilmann
 ## Contexte et définition du projet
 
 Notre objectif est de réaliser un projet qui implique le développement d'un modèle de reinforcement learning (apprentissage par renforcement).
