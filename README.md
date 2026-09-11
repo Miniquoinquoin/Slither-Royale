@@ -144,3 +144,27 @@ La croissance sur élimination et les boosts de vitesse sont des extensions envi
 
 Un autre avantage de cette implémentation est qu'une fois le cœur de jeu posé, les autres parties peuvent être développées en parallèle : l'entraînement avance en même temps que le serveur et le client.
 
+
+## Délai
+
+Les délais sont exprimés en numéros de séance (S1 à S12). Ils sont volontairement pessimistes : la répartition de l'effort ci-dessus totalise environ 100 h pour environ 117 h disponibles, ce qui laisse peu de marge.
+
+Le jeu est prioritaire. L'IA entraînée n'est développée qu'une fois le jeu jouable et déployé ; en attendant, des bots scriptés remplissent les places libres.
+
+| Objectif | Début | Fin au plus tard | Durée |
+| --- | --- | --- | --- |
+| Mise en place du projet | S1 | S1 | 1 séance |
+| Cœur de jeu et tests | S1 | S4 | 3 à 4 séances |
+| Serveur Django + Channels | S3 | S8 | 5 à 6 séances |
+| Client PixiJS | S3 | S8 | 5 à 6 séances |
+| Bots scriptés et remplissage des slots | S7 | S8 | 1 à 2 séances |
+| Déploiement sur la VM Minet | S8 | S9 | 2 séances |
+| IA : environnement RL, entraînement, intégration (optionnel) | S9 | S11 | 3 séances au plus |
+| Préparation de l'oral et marge | S11 | S12 | 2 séances |
+
+### Jalons
+
+- **S4** : cœur de jeu terminé, testé et figé.
+- **S8** : partie jouable en local, humains et bots scriptés.
+- **S9** : jeu déployé — livrable minimal atteint.
+- **S11** : gel des fonctionnalités, plus que des corrections.
