@@ -1,0 +1,28 @@
+[project]
+name = "slither-royale"
+version = "0.1.0"
+description = "Moteur de jeu et serveur pour Slither Royale"
+requires-python = ">=3.12"
+authors = [
+    { name = "Jonathan Heilmann"},
+    { name = "Alexandre Vial"},
+    { name = "Allan Amri"},
+]
+license = { file = "LICENSE" }
+dependencies = ["numpy>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["core"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
