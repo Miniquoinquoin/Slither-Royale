@@ -1,1 +1,9 @@
+env/
+
+# Cache python
+core/__pycache__/
+tests/__pycache__/
+slither_royale.egg-info/
+
+# Project personal file
 TODO.md
