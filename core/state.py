@@ -9,8 +9,6 @@ import numpy as np
 
 from core.config import Config
 
-LEFT, STRAIGHT, RIGHT = 0, 1, 2
-
 # Max deviation of the initial heading from the center direction (rad).
 _SPAWN_JITTER = 0.2
 

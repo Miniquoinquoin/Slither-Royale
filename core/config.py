@@ -17,7 +17,7 @@ class Config:
             between two segments. Defaults to 0.5.
         radius (float, optional): Radius of the head and of each segment.
             Defaults to 1.0.
-        turn_rate (float, optional): Rotation per tick for the left and right
+        max_turn_rate (float, optional): Max rotation per tick for the left and right
             actions, in radians. Defaults to 0.12.
         map_radius (float, optional): Radius of the circular map, centered on
             the origin. Defaults to 60.0.
@@ -35,7 +35,7 @@ class Config:
     length: int = 32
     speed: float = 0.5
     radius: float = 1.0
-    turn_rate: float = 0.12
+    max_turn_rate: float = 0.12
     map_radius: float = 60.0
     spawn_radius_ratio: float = 0.6
     zone_start_tick: int = 300
