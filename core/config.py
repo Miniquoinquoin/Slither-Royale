@@ -47,21 +47,18 @@ class Config:
         """Check that the parameters are consistent.
 
         Raises:
-            ValueError: If ``n_snakes`` is not between 1 and 127 (``killer`` is
-                stored as int8).
+            ValueError: If ``n_snakes`` is null.
             ValueError: If ``length`` is lower than 1.
-            ValueError: If ``speed`` is not in ``]0, radius]``. Segments must
-                overlap so the body is continuous and a head cannot pass through
-                it in a single tick.
+            ValueError: If ``speed`` is not null
             ValueError: If ``zone_min_radius`` is not in ``]0, map_radius]``.
             ValueError: If the snakes do not fit inside the map at spawn.
         """
-        if not 1 <= self.n_snakes <= 127:
-            raise ValueError("n_snakes must be between 1 and 127 (killer is stored as int8)")
+        if not 1 <= self.n_snakes:
+            raise ValueError("n_snakes can be null")
         if self.length < 1:
             raise ValueError("length must be >= 1")
-        if not 0 < self.speed <= self.radius:
-            raise ValueError("0 < speed <= radius is required")
+        if not 0 < self.speed:
+            raise ValueError("0 < speed")
         if not 0 < self.zone_min_radius <= self.map_radius:
             raise ValueError("0 < zone_min_radius <= map_radius is required")
         tail = self.spawn_radius_ratio * self.map_radius + (self.length - 1) * self.speed
