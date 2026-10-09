@@ -129,3 +129,26 @@ def new_game(config: Config, seed: int) -> GameState:
         killer=np.full(n, -1, dtype=np.int8),
         zone_radius=float(config.map_radius),
     )
+
+
+
+def move_snakes(config: Config, state: GameState, actions: np.ndarray) -> None:
+    """Advance every alive snake by one tick, in place.
+
+    Each alive snake turns, then moves ``speed`` forward. Dead snakes do not move.
+
+    Args:
+        config (Config): Game parameters.
+        state (GameState): State to update.
+        actions (np.ndarray): Rotation of each snake in radians, shape [N].
+            Clipped to ``[-max_turn_rate, max_turn_rate]``.
+    """
+    alive = state.alive
+    actions = np.clip(actions, -config.max_turn_rate, config.max_turn_rate)
+    state.angle[alive] = wrap_angle(state.angle[alive] + actions[alive])
+
+    direction = np.stack([np.cos(state.angle), np.sin(state.angle)], axis=1)
+    new_heads = state.heads + config.speed * direction
+
+    state.body[alive, 1:] = state.body[alive, :-1]
+    state.body[alive, 0] = new_heads[alive]
