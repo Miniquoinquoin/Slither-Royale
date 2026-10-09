@@ -74,6 +74,7 @@ class Snake:
                 ``[-max_turn_rate, max_trun_rate]``. Default 0 (Straight)
         """
 
+        action = np.clip(action, -self.config.max_turn_rate, self.config.max_turn_rate)
         self.angle = wrap_angle(self.angle + action)
         new_head = self._head_new_position()
         self.state.body[:-1] = self.state.body[1:]
