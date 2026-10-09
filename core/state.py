@@ -53,6 +53,10 @@ class GameState:
         """
         return self.body[:, 0]
 
+    @heads.setter
+    def heads(self, value : np.ndarray) -> None:
+        self.body[:,0] = value
+
     def copy(self) -> "GameState":
         """Deep copy of the state.
 
