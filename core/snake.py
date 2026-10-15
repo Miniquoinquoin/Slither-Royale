@@ -92,6 +92,36 @@ class Snake:
         new_head = self._head_new_position()
         self.body[1:] = self.body[:-1]
         self.body[0] = new_head
-        
-        
 
+    def collision(self, other : "Snake") -> bool:
+        """Check if the snake collide with another snake
+
+        Args:
+            other (Snake): Snake to check collision with
+
+        Returns:
+            bool: True if the snake collide with the other snake, False otherwise
+        """
+        if not self.state.alive[self.index] or not self.state.alive[other.index]:
+            return False
+
+        # Check if the head of the snake is in the body of the other snake
+        distance = np.linalg.norm(self.head - other.body, axis=1)
+        return np.any(distance < self.config.radius * 2)
+
+    def collisions(self, others : list["Snake"]) -> list["Snake"]:
+        """Check if the snake collide with any other snake
+
+        Args:
+            others (list[Snake]): List of snakes to check collision with
+        
+        Returns:
+            bool : True if the snake collide with any other snake, False otherwise
+        """
+
+        colisions = False
+        while not colisions and len(others) > 0:
+            other = others.pop()
+            colisions = self.collision(other)
+        
+        return colisions
