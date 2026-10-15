@@ -4,12 +4,12 @@ It's all base on GameState
 """
 
 from dataclasses import dataclass
+
 import numpy as np
 
-from typing import Literal
-
-from core.state import GameState, wrap_angle
 from core.config import Config
+from core.state import GameState, wrap_angle
+
 
 @dataclass(slots=True)
 class Snake:
