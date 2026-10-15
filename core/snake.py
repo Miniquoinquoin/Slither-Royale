@@ -11,7 +11,7 @@ from typing import Literal
 from core.state import GameState, wrap_angle
 from core.config import Config
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class Snake:
     """Snake object to simplify snake interaction
 
@@ -31,6 +31,19 @@ class Snake:
             np.ndarray: float32 view of coordinate, shape [2]
         """
         return self.state.heads[self.index]
+
+    @property
+    def body(self) -> np.ndarray:
+        """Body of the snake
+
+        Returns:
+            np.ndarray: all the coordinate of the snake, shape [snakelenght, 2], float32
+        """
+        return self.state.body[self.index]
+
+    @body.setter
+    def body(self, value : np.ndarray) -> None:
+        self.state.body[self.index] = value
 
     @property
     def angle(self) -> np.float32:
@@ -77,8 +90,8 @@ class Snake:
         action = np.clip(action, -self.config.max_turn_rate, self.config.max_turn_rate)
         self.angle = wrap_angle(self.angle + action)
         new_head = self._head_new_position()
-        self.state.body[:-1] = self.state.body[1:]
-        self.state.body[0] = new_head
+        self.body[1:] = self.body[:-1]
+        self.body[0] = new_head
         
         
 
