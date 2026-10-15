@@ -1,9 +1,16 @@
 env/
+.env
+# Environnement virtuel
+.venv/
 
+# Django
+db.sqlite3
 # Cache python
+__pycache__/
 core/__pycache__/
 tests/__pycache__/
 slither_royale.egg-info/
+*.py[cod]
 
 # Project personal file
 TODO.md
