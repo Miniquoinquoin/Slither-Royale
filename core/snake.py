@@ -8,8 +8,8 @@ import numpy as np
 
 from typing import Literal
 
-from state import GameState, wrap_angle
-from config import Config
+from core.state import GameState, wrap_angle
+from core.config import Config
 
 @dataclass(frozen=True, slots=True)
 class Snake:
