@@ -54,11 +54,11 @@ class Config:
             ValueError: If the snakes do not fit inside the map at spawn.
         """
         if not 1 <= self.n_snakes:
-            raise ValueError("n_snakes can be null")
+            raise ValueError("n_snakes can't be null")
         if self.length < 1:
             raise ValueError("length must be >= 1")
         if not 0 < self.speed:
-            raise ValueError("0 < speed")
+            raise ValueError("Speed can't be negative or 0")
         if not 0 < self.zone_min_radius <= self.map_radius:
             raise ValueError("0 < zone_min_radius <= map_radius is required")
         tail = self.spawn_radius_ratio * self.map_radius + (self.length - 1) * self.speed
