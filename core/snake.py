@@ -109,6 +109,14 @@ class Snake:
         distance = np.linalg.norm(self.head - other.body, axis=1)
         return np.any(distance < self.config.radius * 2)
 
+    def is_snake_in_map(self) -> bool:
+        """Check if the snake is in the map
+
+        Returns:
+            bool: True if the snake is in the map, False otherwise
+        """
+        return bool(np.linalg.norm(self.head) <= self.state.zone_radius)
+
     def collisions(self, others : list["Snake"]) -> list["Snake"]:
         """Check if the snake collide with any other snake
 
