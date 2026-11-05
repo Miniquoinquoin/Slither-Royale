@@ -1,9 +1,9 @@
 
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 
 from accounts.forms import SignUpForm
-from django.contrib.auth import login as auth_login
-from django.contrib.auth.forms import AuthenticationForm
 
 
 def register(request):
