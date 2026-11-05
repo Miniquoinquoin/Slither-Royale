@@ -15,15 +15,21 @@ type GameState = {
   food: unknown[];
 };
 
+// export let state: GameState | null = null;
+
+export let previous: GameState | null = null;
 export let state: GameState | null = null;
+export let receivedAt = 0;
 
 const ws = new WebSocket('ws://localhost:8765');
 
 ws.onopen = () => console.log('[ws] connecté');
 ws.onclose = () => console.log('[ws] fermé');
 ws.onmessage = (event) => {
-    state = JSON.parse(event.data);
     // update(state!);
+    previous = state;
+    state = JSON.parse(event.data);
+    receivedAt = performance.now(); 
 };
 
 // function update(s: GameState) {
