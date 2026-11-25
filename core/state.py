@@ -7,9 +7,6 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from core.config import Config
-
-
 
 @dataclass(slots=True)
 class GameState:
