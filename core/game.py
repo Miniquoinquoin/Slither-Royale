@@ -126,3 +126,20 @@ class Game:
 
         out_of_bounds = np.linalg.norm(self.state.heads - self.config.zone_center, axis=1) > self.state.zone_radius
         self.state.alive &= ~out_of_bounds
+
+    def step(self, actions: np.ndarray) -> GameState:
+        """Advance the game by one tick.
+
+        Args:
+            actions (np.ndarray): Rotation of each snake in radians, shape [N].
+                Clipped to ``[-max_turn_rate, max_turn_rate]``.
+
+        Returns:
+            GameState: New state after the tick.
+        """
+        self._move_snakes(actions)
+        self._collisions()
+        self._zone()
+        self._snake_out_of_bounds()
+        self.state.tick += 1
+        return self.state.copy()
