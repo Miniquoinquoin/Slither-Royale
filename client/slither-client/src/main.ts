@@ -1,6 +1,6 @@
-import { Application, Graphics } from 'pixi.js';
+import { Application, Graphics } from "pixi.js";
 // import { state } from './GameSocket';
-import { previous, state, receivedAt } from './GameSocket';
+import { previous, state, receivedAt } from "./GameSocket";
 
 (async () => {
   const app = new Application();
@@ -9,7 +9,7 @@ import { previous, state, receivedAt } from './GameSocket';
   document.body.appendChild(app.canvas);
 
   const color = 0x4ade80;
-  const g = new Graphics()
+  const g = new Graphics();
   const DURATION = 50;
   app.stage.addChild(g);
 
@@ -22,7 +22,7 @@ import { previous, state, receivedAt } from './GameSocket';
     //   for (let i = snake.pts.length - 2; i >= 0; i -= 2) {
     //     g.circle(snake.pts[i], snake.pts[i + 1], snake.r).fill(color);
     //   }
-    // } 
+    // }
 
     for (const snake of state.snakes) {
       const prev = previous?.snakes.find((s) => s.id === snake.id);
@@ -45,7 +45,10 @@ import { previous, state, receivedAt } from './GameSocket';
   app.stage.addChild(head);
 
   const mouse = { x: head.x, y: head.y };
-  window.addEventListener('pointermove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener("pointermove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
 
   const SPEED = 200;
   app.ticker.add((ticker) => {
