@@ -1,4 +1,4 @@
 from core.config import Config
-from core.state import GameState, new_game, wrap_angle
+from core.state import GameState, wrap_angle
 
-__all__ = ["Config", "GameState", "Snake", "new_game", "wrap_angle"]
+__all__ = ["Config", "GameState", "Snake", "wrap_angle"]
