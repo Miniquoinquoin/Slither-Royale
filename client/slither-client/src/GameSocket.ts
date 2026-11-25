@@ -32,6 +32,11 @@ ws.onmessage = (event) => {
   receivedAt = performance.now();
 };
 
+export function sendAngle(angle: number) {
+  ws.send(JSON.stringify({ angle }));
+}
+
+
 // function update(s: GameState) {
 //     console.log(s.t, s.snakes.length);
 //     console.log(s);

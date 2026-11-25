@@ -1,6 +1,6 @@
 import { Application, Graphics } from "pixi.js";
 // import { state } from './GameSocket';
-import { previous, state, receivedAt } from "./GameSocket";
+import { previous, state, receivedAt, sendAngle} from "./GameSocket";
 
 (async () => {
   const app = new Application();
@@ -54,7 +54,10 @@ import { previous, state, receivedAt } from "./GameSocket";
   app.ticker.add((ticker) => {
     const dt = ticker.deltaMS / 1000;
     const angle = Math.atan2(mouse.y - head.y, mouse.x - head.x);
+
     head.x += Math.cos(angle) * SPEED * dt;
     head.y += Math.sin(angle) * SPEED * dt;
+
+    sendAngle(angle);
   });
 })();
