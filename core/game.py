@@ -110,3 +110,19 @@ class Game:
         state.killer[new_deaths] = killers
         state.death_tick[new_deaths] = state.tick
         state.kills += np.bincount(killers, minlength=n).astype(state.kills.dtype)
+
+
+    def _zone(self) -> None:
+        """Shrink the zone radius if the tick is past the start tick, in place."""
+
+        if self.state.tick >= self.config.zone_start_tick:
+            self.state.zone_radius = max(
+                self.config.zone_min_radius,
+                self.state.zone_radius - self.config.zone_shrink_per_tick,
+            )
+
+    def _snake_out_of_bounds(self) -> None:
+        """Kills all snakes if their heads are outside the zone, in place."""
+
+        out_of_bounds = np.linalg.norm(self.state.heads - self.config.zone_center, axis=1) > self.state.zone_radius
+        self.state.alive &= ~out_of_bounds
